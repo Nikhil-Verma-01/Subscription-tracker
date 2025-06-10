@@ -15,7 +15,7 @@ export const signUp = async (req, res, next) => {
         //Check if a user already exists 
         const existingUser = await User.findOne({email});
 
-        if(!existingUser){
+        if(existingUser){
             const error = new Error('User already exists');
             error.statusCode = 409;
             throw error;
@@ -57,7 +57,7 @@ export const signIn = async (req, res, next) => {
         const user = await User.findOne({email});
 
         if(!user){
-            const error = new Error('Usre not found');
+            const error = new Error('User not found');
             error.statusCode = 404;
             throw error;
         }
